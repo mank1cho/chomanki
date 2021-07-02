@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
-@Table(name = "USER_MEMBERSHIP")
+@Table(name = "user_membership")
 @NoArgsConstructor
 public class UserMembership {
 
@@ -20,11 +20,11 @@ public class UserMembership {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_seq")
     User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "membership_id")
+    @JoinColumn(name = "membership_seq")
     Membership membership;
 
     @Column(name = "user_membership_membershipStatus")
@@ -36,4 +36,13 @@ public class UserMembership {
     @CreatedDate
     private LocalDateTime startDate;
 
+    @Builder
+    public UserMembership(Long id, User user, Membership membership, Boolean membershipStatus, Long point, LocalDateTime startDate){
+        this.id = id;
+        this.user = user;
+        this.membership = membership;
+        this.membershipStatus = membershipStatus;
+        this.point = point;
+        this.startDate = startDate;
+    }
 }

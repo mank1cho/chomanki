@@ -11,12 +11,12 @@ import java.util.List;
 
 @Getter
 @Entity
-@Table(name = "MEMBERSHIP")
+@Table(name = "membership")
 @NoArgsConstructor
 public class Membership {
 
     @Id
-    @Column(name = "membership_id")
+    @Column(name = "membership_seq")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -29,23 +29,11 @@ public class Membership {
     @OneToMany(mappedBy = "membership")
     private List<UserMembership> userMembershipList = new ArrayList<>();
 
-    public Membership setId(Long id) {
+    @Builder
+    public Membership(Long id, String membershipId, String membershipName, List<UserMembership> userMembershipList){
         this.id = id;
-        return this;
-    }
-
-    public Membership setMembershipId(String membershipId) {
         this.membershipId = membershipId;
-        return this;
-    }
-
-    public Membership setMembershipName(String membershipName) {
-        this.membershipName = membershipName;
-        return this;
-    }
-
-    public Membership setUserMembershipList(List<UserMembership> userMembershipList) {
         this.userMembershipList = userMembershipList;
-        return this;
     }
+
 }
