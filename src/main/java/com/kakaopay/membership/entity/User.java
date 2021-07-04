@@ -3,11 +3,13 @@ package com.kakaopay.membership.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString
 @Getter
 @Entity
 @Table(name = "user")
@@ -19,7 +21,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", unique = true)
     private String userId;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
@@ -31,11 +33,4 @@ public class User {
         this.userId = userId;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userId='" + userId + '\'' +
-                '}';
-    }
 }

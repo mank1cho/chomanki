@@ -17,7 +17,6 @@ public class UserRepositoryTest {
 
     @Test
     public void user_등록테스트(){
-        userRepository.deleteAll();
 
         User user1 = User.builder()
                 .userId("test1")

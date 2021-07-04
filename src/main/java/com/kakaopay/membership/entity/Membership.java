@@ -3,15 +3,18 @@ package com.kakaopay.membership.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@ToString
 @Getter
 @Entity
-@Table(name = "membership")
+@Table(name = "membership", uniqueConstraints = {
+        @UniqueConstraint(name = "id_name_unique", columnNames = {"membership_id", "membership_name"})
+})
 @NoArgsConstructor
 public class Membership {
 
@@ -26,14 +29,12 @@ public class Membership {
     @Column(name = "membership_name")
     private String membershipName;
 
-    @OneToMany(mappedBy = "membership")
+    @OneToMany(mappedBy = "membership", cascade = CascadeType.PERSIST)
     private List<UserMembership> userMembershipList = new ArrayList<>();
 
-    @Builder
-    public Membership(Long id, String membershipId, String membershipName, List<UserMembership> userMembershipList){
-        this.id = id;
+    @Builder Membership(String membershipId, String membershipName){
         this.membershipId = membershipId;
-        this.userMembershipList = userMembershipList;
+        this.membershipName = membershipName;
     }
 
 }
