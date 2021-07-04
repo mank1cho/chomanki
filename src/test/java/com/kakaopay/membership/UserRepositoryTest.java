@@ -15,6 +15,7 @@ public class UserRepositoryTest {
     @Autowired
     UserRepository userRepository;
 
+
     @Test
     public void user_등록테스트(){
 
@@ -30,14 +31,10 @@ public class UserRepositoryTest {
                 .userId("test3")
                 .build();
 
-        User user4 = User.builder()
-                .userId("test3")
-                .build();
 
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
-        userRepository.save(user4);
 
         List<User> users = userRepository.findAll();
 

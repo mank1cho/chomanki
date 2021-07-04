@@ -12,17 +12,23 @@ public class MembershipRepositoryTest {
     @Autowired
     MembershipRepository membershipRepository;
 
+
     @Test
     public void membership_등록테스트(){
 
-        Membership membership = Membership.builder()
-                .membershipId("cj")
+        Membership membership1 = Membership.builder()
+                .membershipName("happypoint")
+                .build();
+        Membership membership2 = Membership.builder()
+                .membershipName("shinsegaepoint")
+                .build();
+        Membership membership3 = Membership.builder()
                 .membershipName("cjone")
                 .build();
 
-
-        membershipRepository.save(membership);
-
+        membershipRepository.save(membership1);
+        membershipRepository.save(membership2);
+        membershipRepository.save(membership3);
     }
 
 }

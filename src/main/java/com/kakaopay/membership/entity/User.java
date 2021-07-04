@@ -17,9 +17,9 @@ import java.util.List;
 public class User {
 
     @Id
-    @Column(name = "user_seq")
+    @Column(name = "user_no")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userNo;
 
     @Column(name = "user_id", unique = true)
     private String userId;
@@ -28,9 +28,9 @@ public class User {
     private List<UserMembership> userMembershipList = new ArrayList<>();
 
     @Builder
-    public User(Long id, String userId){
-        this.id = id;
+    public User(Long userNo, String userId, List<UserMembership> userMembershipList){
+        this.userNo = userNo;
         this.userId = userId;
+        this.userMembershipList = userMembershipList;
     }
-
 }

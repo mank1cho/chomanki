@@ -12,29 +12,25 @@ import java.util.List;
 @ToString
 @Getter
 @Entity
-@Table(name = "membership", uniqueConstraints = {
-        @UniqueConstraint(name = "id_name_unique", columnNames = {"membership_id", "membership_name"})
-})
+@Table(name = "membership")
 @NoArgsConstructor
 public class Membership {
 
     @Id
-    @Column(name = "membership_seq")
+    @Column(name = "membership_no")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long membershipNo;
 
-    @Column(name = "membership_id")
-    private String membershipId;
-
-    @Column(name = "membership_name")
+    @Column(name = "membership_name", unique = true)
     private String membershipName;
 
     @OneToMany(mappedBy = "membership", cascade = CascadeType.PERSIST)
     private List<UserMembership> userMembershipList = new ArrayList<>();
 
-    @Builder Membership(String membershipId, String membershipName){
-        this.membershipId = membershipId;
+    @Builder
+    Membership(Long membershipNo, String membershipName, List<UserMembership> userMembershipList){
+        this.membershipNo = membershipNo;
         this.membershipName = membershipName;
+        this.userMembershipList = userMembershipList;
     }
-
 }

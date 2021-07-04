@@ -1,5 +1,6 @@
 package com.kakaopay.membership.dto.response;
 
+import com.kakaopay.membership.dto.CommonError;
 import com.kakaopay.membership.dto.MembershipDto;
 import lombok.*;
 
@@ -8,12 +9,11 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class MembershipListResponse implements Serializable {
+@Builder
+public class GetMembershipListResponse {
 
     private boolean success;
-    private List<MembershipDto> membershipDtoList;
-    private String error;
+    private List<MembershipDto> response;
+    private CommonError error;
 
 }

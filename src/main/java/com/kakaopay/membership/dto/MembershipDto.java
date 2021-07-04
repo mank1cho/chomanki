@@ -1,6 +1,7 @@
 package com.kakaopay.membership.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,15 +10,15 @@ import java.time.LocalDateTime;
 
 @Setter
 @Getter
-@AllArgsConstructor
-public class MembershipDto implements Serializable {
+@Builder
+public class MembershipDto {
 
     private Long seq;
     private String membershipId;
-    private String UserId;
+    private String userId;
     private String membershipName;
     private LocalDateTime startDate;
     private String membershipStatus;
-    private Long point;
+    private int point;
 
 }
